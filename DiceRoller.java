@@ -1,5 +1,5 @@
 // Dice Roller Java Source Code
-// SWE20001 - Tuesday 2:30 Lab - Team 4
+// SWE20001 - Tuesday 2:30 Lab - Team 04
 
 import java.util.Random;
 import java.util.Scanner;
