@@ -39,13 +39,8 @@ public class DiceRoller {
     // Draw the dice face using ascii characters
     private void draw(int value) {
         int[][] displayVal = faceConfig[value - 1];
-<<<<<<< HEAD
         System.out.println("-----");
  
-=======
-        System.out.println("-------");
-
->>>>>>> origin/9-sided-dice
         for (int i = 0; i < 3; i++) {
             System.out.print("|");
             for (int j = 0; j < 3; j++) {
@@ -57,13 +52,8 @@ public class DiceRoller {
             }
             System.out.println("|");
         }
-<<<<<<< HEAD
         System.out.println("-----");
  
-=======
-        System.out.println("-------");
-
->>>>>>> origin/9-sided-dice
     }
 
     // Roll the dice in Java
