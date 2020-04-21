@@ -36,10 +36,10 @@ public class DiceRoller {
     // Draw the dice face using ascii characters
     private void draw(int value) {
         int[][] displayVal = faceConfig[value - 1];
-        System.out.println("-------");
+        System.out.println("-----");
  
         for (int i = 0; i < 3; i++) {
-            System.out.print("| ");
+            System.out.print("|");
             for (int j = 0; j < 3; j++) {
                 if (displayVal[i][j] == 1) {
                     System.out.print("o");
@@ -47,9 +47,9 @@ public class DiceRoller {
                     System.out.print(" ");
                 }
             }
-            System.out.println(" |");
+            System.out.println("|");
         }
-        System.out.println("-------");
+        System.out.println("-----");
  
     }
  
