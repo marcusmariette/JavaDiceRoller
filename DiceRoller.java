@@ -3,7 +3,7 @@ import java.util.Scanner;
  
 // dice roller java source code
 // Also outputs the dice face as ASCII art
-public class DiceRollerInJava {
+public class DiceRoller {
  
     // This has printing information for all numbers
     // For each number,3x3 matrix represents the face
@@ -16,7 +16,7 @@ public class DiceRollerInJava {
  
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        DiceRollerInJava dice = new DiceRollerInJava();
+        DiceRoller dice = new DiceRoller();
         while (true) {
             int result = dice.roll();
             System.out.println("dice face value:" + result);
