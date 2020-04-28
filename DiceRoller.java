@@ -1,103 +1,128 @@
-// Dice Roller Java Source Code
-// SWE20001 - Tuesday 2:30 Lab - Team 04
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 import java.util.Random;
-import java.util.Scanner;
+//import java.util.Scanner;
 
-// Dice Roller Class
-public class DiceRoller {
-    // A 3x3 Matrix of integers allows us to represent each of 9 sided dice face.
-    int[][][] faceConfig = {
-        { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } },
-        { { 0, 0, 1 }, { 0, 0, 0 }, { 1, 0, 0 } },
-        { { 0, 0, 1 }, { 0, 1, 0 }, { 1, 0, 0 } },
-        { { 1, 0, 1 }, { 0, 0, 0 }, { 1, 0, 1 } },
-        { { 1, 0, 1 }, { 0, 1, 0 }, { 1, 0, 1 } },
-        { { 1, 0, 1 }, { 1, 0, 1 }, { 1, 0, 1 } },
-        { { 1, 0, 1 }, { 1, 1, 1 }, { 1, 0, 1 } },
-        { { 1, 1, 1 }, { 1, 0, 1 }, { 1, 1, 1 } },
-        { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }
-    };
+public class DiceRoller{
+  JFrame f;
+  public static int usertotal;
+  public static int comptotal;
+  DiceRoller(){
+    f=new JFrame("Dice War");//creating instance of JFrame
 
-    // Main Function
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        boolean gameActive = true, guessHigher = false, win = false;
-        DiceRoller dealerDice = new DiceRoller();
-        DiceRoller playerDice = new DiceRoller();
-        // Welcome Player
-        System.out.println("Welcome to the Casino!");
-        // Until user specifies they want to exit the program
-        while (gameActive) {
-            // Dealer Rolls
-            System.out.println("Dealer Rolling the Dice...");
-            int dealerScore = dealerDice.roll();
-            dealerDice.draw(dealerScore);
-            System.out.println("Dealer's Dice Value: " + dealerScore);
+    JButton roll = new JButton("Roll Dice");//creating instance of JButton
+    JButton higher = new JButton("Higher");//creating instance of JButton
+    JButton lower = new JButton("Lower");//creating instance of JButton
+    JLabel i = new JLabel();
+    JLabel j = new JLabel();
+    JLabel k = new JLabel();
+    JLabel l = new JLabel();
+    JLabel compscore = new JLabel("");
+    JLabel userscore = new JLabel("");
 
-            // Implement User choice of Higher or Lower
-            // MC
-            System.out.println("Will the next roll be higher or lower? (H/L)");
-            String guess = scanner.nextLine();
-            if (guess.equalsIgnoreCase("H")){
-                guessHigher = true;
-            }
+    roll.setBounds(130,50,100, 40);
+    higher.setBounds(50,300,100, 40);
+    lower.setBounds(200,300,100, 40);
 
-            // Player Rolls
-            System.out.println("Dealer Rolling the Dice...");
-            int playerScore = playerDice.roll();
-            playerDice.draw(playerScore);
-            System.out.println("Players's Dice Value: " + playerScore);
-            
-            if ((dealerScore > playerScore) && guessHigher == false) // Lower guess WIN
-            {win = true;}
-            else if ((dealerScore < playerScore) && guessHigher == true) // Higher guess WIN
-            {win = true;}
-            
-            if (win == true) {
-                System.out.println("You Win!");
-            } else if (win == false) {
-                System.out.println("You Lose!");
-            } 
-            
-            // Roll Again Options
-            System.out.println("Press [Enter] to Play Again.");
-            System.out.println("Otherwise, Type 'No' to Exit: ");
-
-            // Checks for user "No" input.
-            String input = scanner.nextLine();
-            if (input.equalsIgnoreCase("n") ||
-                    input.equalsIgnoreCase("no")) {
-                System.out.println("Exiting Program.");
-                scanner.close();
-                return;
-            }
-        }
+    roll.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e)
+      {
+        int comp1 = roll();
+        int comp2 = roll();
+        DiceRoller.comptotal = comp1 + comp2;
+        i.setIcon(new ImageIcon("images\\" + comp1 + ".png"));
+        j.setIcon(new ImageIcon("images\\" + comp2 + ".png"));
+        i.setBounds(80,100,100,100);
+        j.setBounds(230,100,100,100);
+        compscore.setText("Dealer rolled " + comptotal + ". Will you roll higher or lower?");
+        compscore.setBounds(50, 200, 500, 100);
+        f.add(i);
+        f.add(j);
+        f.add(compscore);
+        f.revalidate();
+        f.repaint();
+        System.out.print(comptotal);
     }
+    });
 
-    // Draw the dice face using ASCII values and referring the our 3x3 matrix
-    private void draw(int value) {
-        int[][] displayVal = faceConfig[value - 1];
-        System.out.println("-------");
-
-        for (int i = 0; i < 3; i++) {
-            System.out.print("| ");
-            for (int j = 0; j < 3; j++) {
-                if (displayVal[i][j] == 1) {
-                    System.out.print("o");
-                } else {
-                    System.out.print(" ");
-                }
-            }
-            System.out.println(" |");
+    higher.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e)
+      {
+        int user1 = roll();
+        int user2 = roll();
+        DiceRoller.usertotal = user1 + user2;
+        String win;
+        k.setIcon(new ImageIcon("images\\" + user1 + ".png"));
+        l.setIcon(new ImageIcon("images\\" + user2 + ".png"));
+        k.setBounds(80,350,100,100);
+        l.setBounds(230,350,100,100);
+        if (DiceRoller.usertotal > DiceRoller.comptotal)
+        {
+          win = "win";
         }
-        System.out.println("-------");
-
+        else
+        {
+          win = "lose";
+        }
+        userscore.setText("You rolled " + usertotal + ". You " + win + "!");
+        userscore.setBounds(50, 400, 500, 100);
+        f.add(k);
+        f.add(l);
+        f.add(userscore);
+        f.revalidate();
+        f.repaint();
+        System.out.print(usertotal);
     }
+    });
 
-    // Roll the dice in Java
-    private int roll() {
+    lower.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e)
+      {
+        int user1 = roll();
+        int user2 = roll();
+        DiceRoller.usertotal = user1 + user2;
+        String win;
+        k.setIcon(new ImageIcon("images\\" + user1 + ".png"));
+        l.setIcon(new ImageIcon("images\\" + user2 + ".png"));
+        k.setBounds(80,350,100,100);
+        l.setBounds(230,350,100,100);
+        if (DiceRoller.usertotal < DiceRoller.comptotal)
+        {
+          win = "win";
+        }
+        else
+        {
+          win = "lose";
+        }
+        userscore.setText("You rolled " + usertotal + ". You " + win + "!");
+        userscore.setBounds(50, 400, 500, 100);
+        f.add(k);
+        f.add(l);
+        f.add(userscore);
+        f.revalidate();
+        f.repaint();
+        System.out.print(usertotal);
+    }
+    });
+
+    f.add(roll);//adding button in JFrame
+    f.add(higher);//adding button in JFrame
+    f.add(lower);//adding button in JFrame
+
+    f.setSize(400,600);//400 width and 500 height
+    f.setLayout(null);//using no layout managers
+    f.setVisible(true);//making the frame visible
+    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+}
+
+    int roll() {
         Random r = new Random();
         return r.nextInt(9) + 1;
+    }
+
+    public static void main(String[] args) {
+    new DiceRoller();
     }
 }
