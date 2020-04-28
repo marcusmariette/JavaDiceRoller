@@ -22,28 +22,40 @@ public class DiceRoller {
     // Main Function
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        DiceRoller dice1 = new DiceRoller();
-        DiceRoller dice2 = new DiceRoller();
+        DiceRoller dealerDice = new DiceRoller();
+        DiceRoller playerDice = new DiceRoller();
+        // Welcome Player
+        System.out.println("Welcome to the Casino!");
         // Until user specifies they want to exit the program
         while (true) {
-            // Result of the dice roll
-            int result1 = dice1.roll();
-            int result2 = dice2.roll();
+            // Dealer Rolls
+            System.out.println("Dealer Rolling the Dice...");
+            int dealerScore = dealerDice.roll();
+            dealerDice.draw(dealerScore);
+            System.out.println("Dealer's Dice Value: " + dealerScore);
 
-            // Tells user the dice is rolling
-            System.out.println("Dice Rolling...");
-            // Draws the dice
-            dice1.draw(result1);
-            dice2.draw(result2);
-            // Prints out the dice value
-            System.out.println("Dice 1 Face Value: " + result1);
-            System.out.println("Dice 2 Face Value: " + result2);
+            // Implement User choice of Higher or Lower
+            // MC
+
+            // Player Rolls
+            System.out.println("Dealer Rolling the Dice...");
+            int playerScore = playerDice.roll();
+            dealerDice.draw(dealerScore);
+            System.out.println("Dealer's Dice Value: " + playerScore);
+
+            // Implement User Choice checked against dice values
+            // AT
+
+            // Output Text
+            // AT
+            if (player wins) {
+                System.out.println("You Win!");
+            } else if (player loses) {
+                System.out.println("You Lose!");
+            }
             
-            // Print Sum
-            System.out.println("Total Sum: " + (result1 + result2));
-
             // Roll Again Options
-            System.out.println("Press [Enter] to Roll Again.");
+            System.out.println("Press [Enter] to Play Again.");
             System.out.println("Otherwise, Type 'No' to Exit: ");
 
             // Checks for user "No" input.
