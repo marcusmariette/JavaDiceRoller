@@ -22,12 +22,13 @@ public class DiceRoller {
     // Main Function
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        boolean gameActive = true, guessHigher = false, win = false;
         DiceRoller dealerDice = new DiceRoller();
         DiceRoller playerDice = new DiceRoller();
         // Welcome Player
         System.out.println("Welcome to the Casino!");
         // Until user specifies they want to exit the program
-        while (true) {
+        while (gameActive) {
             // Dealer Rolls
             System.out.println("Dealer Rolling the Dice...");
             int dealerScore = dealerDice.roll();
@@ -36,23 +37,28 @@ public class DiceRoller {
 
             // Implement User choice of Higher or Lower
             // MC
+            System.out.println("Will the next roll be higher or lower? (H/L)");
+            String guess = scanner.nextLine();
+            if (guess.equalsIgnoreCase("H")){
+                guessHigher = true;
+            }
 
             // Player Rolls
             System.out.println("Dealer Rolling the Dice...");
             int playerScore = playerDice.roll();
-            dealerDice.draw(dealerScore);
-            System.out.println("Dealer's Dice Value: " + playerScore);
-
-            // Implement User Choice checked against dice values
-            // AT
-
-            // Output Text
-            // AT
-            if (player wins) {
+            playerDice.draw(playerScore);
+            System.out.println("Players's Dice Value: " + playerScore);
+            
+            if ((dealerScore > playerScore) && guessHigher == false) // Lower guess WIN
+            {win = true;}
+            else if ((dealerScore < playerScore) && guessHigher == true) // Higher guess WIN
+            {win = true;}
+            
+            if (win == true) {
                 System.out.println("You Win!");
-            } else if (player loses) {
+            } else if (win == false) {
                 System.out.println("You Lose!");
-            }
+            } 
             
             // Roll Again Options
             System.out.println("Press [Enter] to Play Again.");
