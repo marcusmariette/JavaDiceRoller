@@ -38,9 +38,11 @@ public class DiceRoller {
             // Prints out the dice value
             System.out.println("Dice 1 Face Value: " + result1);
             System.out.println("Dice 2 Face Value: " + result2);
+            
+            // Print Sum
+            System.out.println("Total Sum: " + (result1 + result2));
 
-            System.out.println("The sum of the dice is " + (result1 + result2));
-
+            // Roll Again Options
             System.out.println("Press [Enter] to Roll Again.");
             System.out.println("Otherwise, Type 'No' to Exit: ");
 
