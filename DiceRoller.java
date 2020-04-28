@@ -7,7 +7,7 @@ import java.util.Scanner;
 // Dice Roller Class
 public class DiceRoller {
     // A 3x3 Matrix of integers allows us to represent each of 9 sided dice face.
-    int[][][] faceConfig = { 
+    int[][][] faceConfig = {
         { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } },
         { { 0, 0, 1 }, { 0, 0, 0 }, { 1, 0, 0 } },
         { { 0, 0, 1 }, { 0, 1, 0 }, { 1, 0, 0 } },
@@ -16,25 +16,30 @@ public class DiceRoller {
         { { 1, 0, 1 }, { 1, 0, 1 }, { 1, 0, 1 } },
         { { 1, 0, 1 }, { 1, 1, 1 }, { 1, 0, 1 } },
         { { 1, 1, 1 }, { 1, 0, 1 }, { 1, 1, 1 } },
-        { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } } 
+        { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }
     };
 
     // Main Function
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        DiceRoller dice = new DiceRoller();
-
+        DiceRoller dice1 = new DiceRoller();
+        DiceRoller dice2 = new DiceRoller();
         // Until user specifies they want to exit the program
         while (true) {
             // Result of the dice roll
-            int result = dice.roll();
+            int result1 = dice1.roll();
+            int result2 = dice2.roll();
 
             // Tells user the dice is rolling
             System.out.println("Dice Rolling...");
             // Draws the dice
-            dice.draw(result);
+            dice1.draw(result1);
+            dice2.draw(result2);
             // Prints out the dice value
-            System.out.println("Dice Face Value: " + result);
+            System.out.println("Dice 1 Face Value: " + result1);
+            System.out.println("Dice 2 Face Value: " + result2);
+
+            System.out.println("The sum of the dice is " + (result1 + result2));
 
             System.out.println("Press [Enter] to Roll Again.");
             System.out.println("Otherwise, Type 'No' to Exit: ");
@@ -54,7 +59,7 @@ public class DiceRoller {
     private void draw(int value) {
         int[][] displayVal = faceConfig[value - 1];
         System.out.println("-------");
- 
+
         for (int i = 0; i < 3; i++) {
             System.out.print("| ");
             for (int j = 0; j < 3; j++) {
@@ -67,7 +72,7 @@ public class DiceRoller {
             System.out.println(" |");
         }
         System.out.println("-------");
- 
+
     }
 
     // Roll the dice in Java
