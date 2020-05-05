@@ -1,11 +1,12 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.Properties;
 
 import java.util.Random;
-//import java.util.Scanner;
 
 public class DiceRoller{
+  String osname = System.getProperty("os.name");
   JFrame f;
   public static int usertotal;
   public static int comptotal;
@@ -26,14 +27,26 @@ public class DiceRoller{
     higher.setBounds(50,300,100, 40);
     lower.setBounds(200,300,100, 40);
 
+    System.out.print(osname);
+
     roll.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e)
       {
         int comp1 = roll();
         int comp2 = roll();
         DiceRoller.comptotal = comp1 + comp2;
-        i.setIcon(new ImageIcon("images\\" + comp1 + ".png"));
-        j.setIcon(new ImageIcon("images\\" + comp2 + ".png"));
+        if (osname.contains("Windows"))
+        {
+          i.setIcon(new ImageIcon(".\\images\\" + comp1 + ".png"));
+          j.setIcon(new ImageIcon(".\\images\\" + comp2 + ".png"));
+        }
+        else
+        {
+          i.setIcon(new ImageIcon("./images/" + comp1 + ".png"));
+          j.setIcon(new ImageIcon("./images/" + comp2 + ".png"));
+        }
+
+
         i.setBounds(80,100,100,100);
         j.setBounds(230,100,100,100);
         compscore.setText("Dealer rolled " + comptotal + ". Will you roll higher or lower?");
@@ -43,7 +56,6 @@ public class DiceRoller{
         f.add(compscore);
         f.revalidate();
         f.repaint();
-        System.out.print(comptotal);
     }
     });
 
@@ -54,8 +66,17 @@ public class DiceRoller{
         int user2 = roll();
         DiceRoller.usertotal = user1 + user2;
         String win;
-        k.setIcon(new ImageIcon("images\\" + user1 + ".png"));
-        l.setIcon(new ImageIcon("images\\" + user2 + ".png"));
+        if (osname.contains("Windows"))
+        {
+          k.setIcon(new ImageIcon(".\\images\\" + user1 + ".png"));
+          l.setIcon(new ImageIcon(".\\images\\" + user2 + ".png"));
+        }
+        else
+        {
+          k.setIcon(new ImageIcon("./images/" + user1 + ".png"));
+          l.setIcon(new ImageIcon("./images/" + user2 + ".png"));
+        }
+
         k.setBounds(80,350,100,100);
         l.setBounds(230,350,100,100);
         if (DiceRoller.usertotal > DiceRoller.comptotal)
@@ -73,7 +94,6 @@ public class DiceRoller{
         f.add(userscore);
         f.revalidate();
         f.repaint();
-        System.out.print(usertotal);
     }
     });
 
@@ -84,8 +104,16 @@ public class DiceRoller{
         int user2 = roll();
         DiceRoller.usertotal = user1 + user2;
         String win;
-        k.setIcon(new ImageIcon("images\\" + user1 + ".png"));
-        l.setIcon(new ImageIcon("images\\" + user2 + ".png"));
+        if (osname.contains("Windows"))
+        {
+          k.setIcon(new ImageIcon(".\\images\\" + user1 + ".png"));
+          l.setIcon(new ImageIcon(".\\images\\" + user2 + ".png"));
+        }
+        else
+        {
+          k.setIcon(new ImageIcon("./images/" + user1 + ".png"));
+          l.setIcon(new ImageIcon("./images/" + user2 + ".png"));
+        }
         k.setBounds(80,350,100,100);
         l.setBounds(230,350,100,100);
         if (DiceRoller.usertotal < DiceRoller.comptotal)
@@ -103,7 +131,6 @@ public class DiceRoller{
         f.add(userscore);
         f.revalidate();
         f.repaint();
-        System.out.print(usertotal);
     }
     });
 
